@@ -1,6 +1,5 @@
-;;; Code:
-
 ;; list the packages you want
+
 (setq package-list '(auctex flycheck highlight-indentation magit))
 
 ;; =========Emacs Lisp Package Archive (ELPA) already comes with v24. These are other repositories=======================
@@ -19,12 +18,6 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-
-;; ======================learn to use emacs properly======================
-;; (add-to-list 'load-path "~/.emacs.d/elisp/")
-;; (require 'no-easy-keys)
-;; (no-easy-keys 1)
-
 ;; =====================flycheck mode=====================
 ;; install with M-x package-install flycheck
 ;; for python, also install flake8 (pip install flake8)
@@ -37,10 +30,6 @@
 ;; =====================highlight indentation mode=====================
 (add-hook 'prog-mode-hook 'highlight-indentation-mode) ;install with M-x package-list-packages (find package by antonj)
 ;; (add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
-
-;; =================customisation file================
-;;(setq custom-file "~/.emacs.d/.emacs-custom.el")
-;; (load custom-file)
 
 ;; =================disable backup files================
 (setq make-backup-files nil)
@@ -57,7 +46,8 @@
 (display-time)
 
 ;; =========Defines the column where line should be auto-wrapped===========
-(set-default 'fill-column 79)
+;; (setq-default auto-fill-function 'do-auto-fill)
+;; (set-default 'fill-column 79)
 
 ;; ==============================================Key Bindings==================================================
 ;; ============================================================================================================
@@ -81,6 +71,7 @@
 ;; ===========C-n adds new line if point is at end of buffer============
 (setq next-line-add-newlines t)
 
+;; ===========shortcut to jump to specific line========================
 (global-set-key (kbd "M-g") 'goto-line)
 
 ;; ======================Enable mouse mode permanently====================== (for nadja)
@@ -112,14 +103,16 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; ===============================ERC======================
-;; for pw, create .ercpass which contains something of the like: (setq freenode-nickone-pass "xxxxxxxx")
-(load "~/.ercpass")
+;; for pw, create ~/.ercpass which contains something of the like: (setq freenode-nickone-pass "xxxxxxxx")
+(if (file-readable-p "~/.ercpass") (load "~/.ercpass"))
+
+(setq erc-nickserv-passwords
+                `((freenode     (("molofishy" . ,freenode-nickone-pass)))))
+
 (require 'erc-services)
 (erc-services-mode 1)
 (setq erc-prompt-for-nickserv-password nil)
 
-(setq erc-nickserv-passwords
-                `((freenode     (("molofishy" . ,freenode-nickone-pass)))))
 
 ;; This causes ERC to connect to the Freenode network upon hitting C-c e f
 (global-set-key "\C-cef" (lambda () (interactive)
@@ -135,12 +128,10 @@
 ;; connections to the same server.
 (setq erc-rename-buffers t)
 
-
-;; =========================AUTOCOMPLETE MODE======================
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-;; (global-auto-complete-mode t)
+;; ======================learn to use emacs properly======================
+;; (add-to-list 'load-path "~/.emacs.d/elisp/")
+;; (require 'no-easy-keys)
+;; (no-easy-keys 1)
 
 ;; =======================CONVERT .PUG INTO .HTML WHEN SAVING (install node package manager (npm) to install pug)======================
 ;; (defun compile-pug ()
@@ -168,6 +159,14 @@
 ;; (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 
 ;; (setq web-mode-enable-css-colorization t)
+
+
+
+
+
+
+
+
 
 
 
