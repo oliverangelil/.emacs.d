@@ -159,16 +159,3 @@
 ;; (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 
 ;; (setq web-mode-enable-css-colorization t)
-
-
-
-
-
-
-
-
-
-
-
-
-
