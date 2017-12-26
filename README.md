@@ -6,6 +6,6 @@ Clone repo to your home directory:
 Will install emacs packages automatically when first opening emacs.
 
 Also need to execute the following:
-```pip install flake8```
+```pip install flake8```<br/><br/>
 ```sudo port install aspell-dict-en```
 
