@@ -1,5 +1,5 @@
 ;; list the packages you want
-(setq package-list '(auctex flycheck highlight-indentation magit no-easy-keys))
+(setq package-list '(auctex flycheck highlight-indentation magit no-easy-keys markdown-mode))
 
 ;; =========Emacs Lisp Package Archive (ELPA) already comes with v24. These are other repositories=======================
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -36,8 +36,19 @@
 (add-hook 'prog-mode-hook 'highlight-indentation-mode)
 ;; (add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
 
+;; =================backup files================
+(defvar --backup-directory (concat user-emacs-directory "backups"))
+(if (not (file-exists-p --backup-directory))
+        (make-directory --backup-directory t))
+(setq backup-directory-alist `(("." . ,--backup-directory)))
+
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
 ;; =================disable backup files================
-(setq make-backup-files nil)
+;(setq make-backup-files nil)
 
 ;; ============='y' and 'n' for 'yes' and 'no'==============
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -47,7 +58,7 @@
 
 ;; ====================Display Time & Date Info in Modeline=================
 (setq display-time-day-and-date t
-     display-time-24hr-format t)
+display-time-24hr-format t)
 (display-time)
 
 ;; ==============================================Key Bindings==================================================
@@ -134,5 +145,4 @@
 ;; ======================no easy keys package======================
 ;; (require 'no-easy-keys)
 ;; (no-easy-keys 1)
-
 
