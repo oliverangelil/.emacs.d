@@ -1,10 +1,9 @@
 ;; list the packages you want
-
-(setq package-list '(auctex flycheck highlight-indentation magit))
+(setq package-list '(auctex flycheck highlight-indentation magit no-easy-keys))
 
 ;; =========Emacs Lisp Package Archive (ELPA) already comes with v24. These are other repositories=======================
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
+			 ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (package-initialize)
@@ -18,17 +17,23 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; =====================flycheck mode=====================
-;; install with M-x package-install flycheck
-;; for python, also install flake8 (pip install flake8)
+
+;; =====================flycheck package=====================
+;; for python, also install flake8 with "pip install flake8"
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; =========Defines the column where line should be auto-wrapped (only for python)===========
+(add-hook 'python-mode-hook
+	  (lambda ()
+	  (setq auto-fill-function 'do-auto-fill)
+	  (setq fill-column 79)))
 
 ;; =====================highlight current line=====================
 ;; (global-hl-line-mode t) ;; To enable
 ;; (set-face-background 'hl-line "light blue")
 
-;; =====================highlight indentation mode=====================
-(add-hook 'prog-mode-hook 'highlight-indentation-mode) ;install with M-x package-list-packages (find package by antonj)
+;; =====================highlight indentation package=====================
+(add-hook 'prog-mode-hook 'highlight-indentation-mode)
 ;; (add-hook 'prog-mode-hook 'highlight-indentation-current-column-mode)
 
 ;; =================disable backup files================
@@ -44,10 +49,6 @@
 (setq display-time-day-and-date t
      display-time-24hr-format t)
 (display-time)
-
-;; =========Defines the column where line should be auto-wrapped===========
-;; (setq-default auto-fill-function 'do-auto-fill)
-;; (set-default 'fill-column 79)
 
 ;; ==============================================Key Bindings==================================================
 ;; ============================================================================================================
@@ -82,13 +83,14 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
-;; ==============latex (auctex) stuff: autosave before compiling=========
+;; ==============auctex package===============
 (setq TeX-save-query nil)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 
-;; ================spelling======install aspell and relevant dictionaries ("aspell-dict-en") with macports
+;; ================british spell checker=============
+;; install aspell and relevant dictionaries ("aspell-dict-en") with macports
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (setq ispell-dictionary "en_GB")
 (setq-default ispell-program-name "aspell")
@@ -104,10 +106,11 @@
 
 ;; ===============================ERC======================
 ;; for pw, create ~/.ercpass which contains something of the like: (setq freenode-nickone-pass "xxxxxxxx")
-(if (file-readable-p "~/.ercpass") (load "~/.ercpass"))
-
-(setq erc-nickserv-passwords
-                `((freenode     (("molofishy" . ,freenode-nickone-pass)))))
+(if (file-readable-p "~/.ercpass")
+    (progn
+      (load "~/.ercpass")
+      (setq erc-nickserv-passwords
+	    `((freenode     (("molofishy" . ,freenode-nickone-pass)))))))
 
 (require 'erc-services)
 (erc-services-mode 1)
@@ -128,34 +131,8 @@
 ;; connections to the same server.
 (setq erc-rename-buffers t)
 
-;; ======================learn to use emacs properly======================
-;; (add-to-list 'load-path "~/.emacs.d/elisp/")
+;; ======================no easy keys package======================
 ;; (require 'no-easy-keys)
 ;; (no-easy-keys 1)
 
-;; =======================CONVERT .PUG INTO .HTML WHEN SAVING (install node package manager (npm) to install pug)======================
-;; (defun compile-pug ()
-;;   (when (eq major-mode 'pug-mode)
-;;     (shell-command (format "pug -P %s" buffer-file-name))))
-;; (add-hook 'after-save-hook 'compile-pug)
 
-;; =======================CONVERT .SASS INTO .CSS WHEN SAVING (sass was installed with gem) ======================
-;; (require 'sass-mode)
-;; (defun compile-sass ()
-;;   (when (eq major-mode 'sass-mode)
-;;     (shell-command (format "sass -t expanded --sourcemap=none %s %s.css" buffer-file-name (file-name-sans-extension buffer-file-name)))))
-;; (add-hook 'after-save-hook 'compile-sass)
-
-;======================WEB-MODE======================
-;; (require 'web-mode)
-;; (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode)) ; here, web-mode is used for files ending with tpl.php
-;; (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-
-;; (setq web-mode-enable-css-colorization t)
