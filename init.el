@@ -50,9 +50,6 @@
       version-control t
       backup-by-copying t)
 
-;; =================disable backup files================
-;(setq make-backup-files nil)
-
 ;; ============='y' and 'n' for 'yes' and 'no'==============
 (defalias 'yes-or-no-p 'y-or-n-p)
 
