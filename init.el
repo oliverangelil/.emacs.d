@@ -142,6 +142,9 @@ display-time-24hr-format t)
 ;; connections to the same server.
 (setq erc-rename-buffers t)
 
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 ;; ======================no easy keys package======================
 ;; (require 'no-easy-keys)
 ;; (no-easy-keys 1)
