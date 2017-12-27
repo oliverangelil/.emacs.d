@@ -1,5 +1,5 @@
 ;; list the packages you want
-(setq package-list '(auctex flycheck highlight-indentation magit no-easy-keys markdown-mode))
+(setq package-list '(auctex flycheck highlight-indentation magit no-easy-keys markdown-mode ivy))
 
 ;; =========Emacs Lisp Package Archive (ELPA) already comes with v24. These are other repositories=======================
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -61,22 +61,6 @@
 display-time-24hr-format t)
 (display-time)
 
-;; ==============================================Key Bindings==================================================
-;; ============================================================================================================
-;; map the window manipulation keys to meta 0, 1, 2, o
-(global-set-key (kbd "M-3") 'split-window-horizontally) ; was digit-argument
-(global-set-key (kbd "M-2") 'split-window-vertically) ; was digit-argument
-(global-set-key (kbd "M-1") 'delete-other-windows) ; was digit-argument
-(global-set-key (kbd "M-0") 'delete-window) ; was digit-argument
-(global-set-key (kbd "M-o") 'other-window) ; was facemenu-keymap
-
-;; To help Unlearn C-x 0, 1, 2, o
-(global-unset-key (kbd "C-x 3")) ;( was split-window-horizontally)
-(global-unset-key (kbd "C-x 2")) ; was split-window-vertically
-(global-unset-key (kbd "C-x 1")) ; was delete-other-windows
-(global-unset-key (kbd "C-x 0")) ; was delete-window
-(global-unset-key (kbd "C-x o")) ; was other-window
-
 ;; ====================== Easier buffer killing======================
 (global-set-key (kbd "M-k") 'kill-this-buffer)
 
@@ -89,10 +73,11 @@ display-time-24hr-format t)
 ;; ======================Enable mouse mode permanently====================== (for nadja)
 ;;(xterm-mouse-mode t)
 
-;; ======================Enable IDO mode
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+;; ======================Enable IVY mode======================
+(ivy-mode 1)
+;; show recently opened files in ivy switch buffer
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
 
 ;; ==============auctex package===============
 (setq TeX-save-query nil)
@@ -149,3 +134,6 @@ display-time-24hr-format t)
 ;; ======================no easy keys package======================
 ;; (require 'no-easy-keys)
 ;; (no-easy-keys 1)
+
+
+
