@@ -143,9 +143,37 @@ display-time-24hr-format t)
 (setq erc-rename-buffers t)
 
 (setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
+(if (file-readable-p custom-file)
+    (load custom-file))
 
 ;; ======================no easy keys package======================
 ;; (require 'no-easy-keys)
 ;; (no-easy-keys 1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
