@@ -88,6 +88,7 @@ display-time-24hr-format t)
 (global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 
+
 ;; ==============auctex package===============
 (setq TeX-save-query nil)
 (setq TeX-auto-save t)
@@ -108,6 +109,7 @@ display-time-24hr-format t)
 
 ;; ===============================magit package.
 (global-set-key (kbd "C-x g") 'magit-status)
+(setq magit-completing-read-function 'ivy-completing-read)
 
 ;; ===============================ERC======================
 ;; for pw, create ~/.ercpass which contains something of the like: (setq freenode-nickone-pass "xxxxxxxx")
