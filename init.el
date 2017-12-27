@@ -48,7 +48,7 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t
-      backup-by-copying)
+      backup-by-copying t)
 
 ;; =================disable backup files================
 ;(setq make-backup-files nil)
@@ -152,31 +152,3 @@ display-time-24hr-format t)
 ;; ======================no easy keys package======================
 ;; (require 'no-easy-keys)
 ;; (no-easy-keys 1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
