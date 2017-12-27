@@ -21,6 +21,7 @@
 ;; =====================flycheck package=====================
 ;; for python, also install flake8 with "pip install flake8"
 (add-hook 'after-init-hook #'global-flycheck-mode)
+;;(setq flymake-python-pyflakes-executable "flake8")
 
 ;; =========Defines the column where line should be auto-wrapped (only for python)===========
 (add-hook 'python-mode-hook
@@ -42,10 +43,12 @@
         (make-directory --backup-directory t))
 (setq backup-directory-alist `(("." . ,--backup-directory)))
 
-(setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
+(setq make-backup-files t
+      delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t
+      backup-by-copying)
 
 ;; =================disable backup files================
 ;(setq make-backup-files nil)
