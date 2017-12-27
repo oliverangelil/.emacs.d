@@ -4,7 +4,7 @@
 
 ;;; Code:
 ;; list the packages you want
-(setq package-list '(auctex flycheck highlight-indentation magit no-easy-keys markdown-mode ivy swiper counsel))
+(setq package-list '(auctex flycheck highlight-indentation magit markdown-mode ivy swiper counsel))
 
 ;; =========Emacs Lisp Package Archive (ELPA) already comes with v24. These are other repositories=======================
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -140,25 +140,6 @@ display-time-24hr-format t)
 (setq custom-file "~/.emacs.d/custom.el")
 (if (file-readable-p custom-file)
     (load custom-file))
-
-;; ======================no easy keys package======================
-;; (require 'no-easy-keys)
-;; (no-easy-keys 1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
