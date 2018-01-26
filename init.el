@@ -27,10 +27,10 @@
 ;;(setq flymake-python-pyflakes-executable "flake8")
 
 ;; =========Defines the column where line should be auto-wrapped (only for python)===========
-(add-hook 'python-mode-hook
-	  (lambda ()
-	  (setq auto-fill-function 'do-auto-fill)
-	  (setq fill-column 79)))
+;; (add-hook 'python-mode-hook
+;; 	  (lambda ()
+;; 	  (setq auto-fill-function 'do-auto-fill)
+;; 	  (setq fill-column 79)))
 
 ;; =====================highlight current line=====================
 ;; (global-hl-line-mode t) ;; To enable
