@@ -88,12 +88,12 @@ display-time-24hr-format t)
 (global-set-key (kbd "C-c g") 'counsel-git)
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 
-
 ;; ==============auctex package===============
 (setq TeX-save-query nil)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
+(setq TeX-one-master '"\"<none>\"") ;; disallow emacs to add random lines to the bottom of files.
 
 ;; ================british spell checker=============
 ;; install aspell and relevant dictionaries ("aspell-dict-en") with macports
@@ -141,6 +141,14 @@ display-time-24hr-format t)
 (setq custom-file "~/.emacs.d/custom.el")
 (if (file-readable-p custom-file)
     (load custom-file))
+
+
+
+
+
+
+
+
 
 
 
